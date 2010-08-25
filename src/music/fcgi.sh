@@ -10,4 +10,4 @@ if [ -f $PIDFILE ]; then
     rm -f -- $PIDFILE
 fi
 
-exec ./manage.py runfcgi  method=threaded host=127.0.0.1 port=3033 pidfile=$PIDFILE
+exec ./manage.py runfcgi  method=threaded host=127.0.0.1 port=3033 pidfile=$PIDFILE 
