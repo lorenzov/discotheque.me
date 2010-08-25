@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/!svn/ver/20/trunk/django-facebookconnect/facebookconnect/management/commands
+END
+__init__.py
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/!svn/ver/3/trunk/django-facebookconnect/facebookconnect/management/commands/__init__.py
+END
+installfacebooktemplates.py
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/!svn/ver/20/trunk/django-facebookconnect/facebookconnect/management/commands/installfacebooktemplates.py
+END

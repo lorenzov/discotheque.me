@@ -1,0 +1,31 @@
+//In the background page:
+<html>
+  <script>
+    //React when a browser action's icon is clicked.
+    chrome.browserAction.onClicked.addListener(function(tab) {
+      
+	chrome.tabs.create({url: 'http://www.discotheque.me/home'});
+	
+	
+	});
+
+	
+	chrome.history.onVisited.addListener(function(result) { if (result.url.search("youtube.com/watch?") >0) {
+	        
+			var xhr = new XMLHttpRequest();
+			xhr.open("GET", "http://www.discotheque.me/services/visit/youtube/?url=" + escape(result.url), true);
+			xhr.onreadystatechange = function() {
+			  if (xhr.readyState == 4) {
+			    // JSON.parse does not evaluate the attacker's scripts.
+
+			  }
+			}
+			xhr.send();
+	    }
+	
+		
+	
+	});
+  </script>
+</html>
+

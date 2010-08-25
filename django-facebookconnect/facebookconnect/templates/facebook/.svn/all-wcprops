@@ -1,0 +1,59 @@
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/!svn/ver/36/trunk/django-facebookconnect/facebookconnect/templates/facebook
+END
+js.html
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/!svn/ver/18/trunk/django-facebookconnect/facebookconnect/templates/facebook/js.html
+END
+invite.html
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/!svn/ver/19/trunk/django-facebookconnect/facebookconnect/templates/facebook/invite.html
+END
+setup.html
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/!svn/ver/19/trunk/django-facebookconnect/facebookconnect/templates/facebook/setup.html
+END
+invitation.fbml
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/!svn/ver/19/trunk/django-facebookconnect/facebookconnect/templates/facebook/invitation.fbml
+END
+xd_receiver.htm
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/!svn/ver/3/trunk/django-facebookconnect/facebookconnect/templates/facebook/xd_receiver.htm
+END
+connect_button.html
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/!svn/ver/36/trunk/django-facebookconnect/facebookconnect/templates/facebook/connect_button.html
+END
+display.html
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/!svn/ver/3/trunk/django-facebookconnect/facebookconnect/templates/facebook/display.html
+END
+show_string.html
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/!svn/ver/3/trunk/django-facebookconnect/facebookconnect/templates/facebook/show_string.html
+END
+mosaic.html
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/!svn/ver/3/trunk/django-facebookconnect/facebookconnect/templates/facebook/mosaic.html
+END

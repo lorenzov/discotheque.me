@@ -1,0 +1,62 @@
+/*_____________________________________________ Start - Projects - carousel _____________________________________________*/
+
+.carousel  {
+    padding: 10px 0 0 0;
+    margin: 0 0 20px 10px;
+    position: relative;     
+}
+    
+
+    
+    .carousel button { /*Don't remove this. we still use this for individual demos. only the front pages use images as of now*/
+        float: left;
+    }              
+    .carousel a.prev, #carousel .carousel a.next {
+        display: block;
+        float: left;
+        width: 30px;
+        height: 103px;
+        text-decoration: none;
+        background: url("/image/imageNavLeft.gif") left 60px no-repeat;
+    }
+        .carousel a.next {
+            background: url("/image/imageNavRight.gif") right 60px no-repeat;
+        }
+            .carousel a.next:hover {
+                background-image: url("/image/imageNavRightHover.gif");
+            }
+            .carousel a.prev:hover {
+                background-image: url("/image/imageNavLeftHover.gif");
+            }    
+            .carousel a:hover, #carousel .carousel a:active {
+                border: none;
+                outline: none;
+            }                 
+     .carousel  {
+        border: 1px solid black;
+        /*background-color: #dfdfdf;*/
+        
+        /* Needed for rendering without flicker */
+        position: relative;
+        visibility: hidden;
+        left: -5000px;
+    }
+        .carousel ul {
+            margin: 0;
+        }
+        .carousel li img, 
+        .carousel li p {
+            background-color: #fff;
+            width: 250px;
+            height: 148px;
+            margin: 10px;
+        }
+        
+        
+            .imageSlider li img, 
+            .imageSlider li p, 
+            .imageSliderExt li img , 
+            .imageSliderExt li p {
+                width: 500px;
+                height: 320px;
+            }

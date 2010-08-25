@@ -1,0 +1,6 @@
+content discothequebutton chrome/discothequebutton/content/
+skin discothequebutton classic/1.0 chrome/discothequebutton/skin/global/
+style chrome://global/content/customizeToolbar.xul chrome://discothequebutton/skin/discothequeMain.css
+
+locale discothequebutton en-US chrome/discothequebutton/locale/en-US/
+overlay chrome://browser/content/browser.xul chrome://discothequebutton/content/discothequeMain.xul

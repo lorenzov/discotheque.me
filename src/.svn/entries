@@ -1,0 +1,77 @@
+10
+
+dir
+453
+svn+ssh://lviscanti@64.22.74.182/var/svn/discotheque/src
+svn+ssh://lviscanti@64.22.74.182/var/svn/discotheque
+
+
+
+2010-07-23T14:35:30.507644Z
+453
+marcky
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+9fa1741f-e722-407a-b1f9-946be25c4e54
+
+extensions
+dir
+
+music
+dir
+
+batch
+dir
+
+youtube.py
+file
+
+
+
+
+2010-07-04T06:39:59.000000Z
+a7bf460c897b9dfd191f1fe5efcb4d3c
+2010-07-04T06:38:56.628001Z
+1
+lviscanti
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1224
+
+static
+dir
+
+templates
+dir
+

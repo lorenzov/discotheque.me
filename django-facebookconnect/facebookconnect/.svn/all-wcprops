@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/!svn/ver/36/trunk/django-facebookconnect/facebookconnect
+END
+admin.py
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/6/trunk/django-facebookconnect/facebookconnect/admin.py
+END
+middleware.py
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/17/trunk/django-facebookconnect/facebookconnect/middleware.py
+END
+views.py
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/30/trunk/django-facebookconnect/facebookconnect/views.py
+END
+__init__.py
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/3/trunk/django-facebookconnect/facebookconnect/__init__.py
+END
+tests.py
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/3/trunk/django-facebookconnect/facebookconnect/tests.py
+END
+models.py
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/36/trunk/django-facebookconnect/facebookconnect/models.py
+END
+urls.py
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/36/trunk/django-facebookconnect/facebookconnect/urls.py
+END
