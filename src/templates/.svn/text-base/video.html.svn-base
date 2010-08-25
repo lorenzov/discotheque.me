@@ -1,0 +1,118 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:fb="http://www.facebook.com/2008/fbml">
+<head>
+	<title>discotheque.me - {{video.title}}</title>
+	<script type="text/javascript" src="http://static.ak.connect.facebook.com/js/api_lib/v0.4/FeatureLoader.js.php"></script> 
+	<script type="text/javascript" src="http://www.google.com/jsapi?key=ABQIAAAAeZHdmk7IDlnt6hw7bynNARQcG010bBBcQO8RX_6ETSTACWgmrxQTkHjxBpNFdli4IfjLEkC1YEdoZg"></script>
+	<script language="Javascript" type="text/javascript">
+	    //<![CDATA[
+
+	    google.load("jquery", "1.4.2");
+		google.load("swfobject", "2.2");
+	
+		
+	</script>
+	<script src="http://static.discotheque.me/javascript/jquery.flash.js"></script>
+	<script>
+	  
+	</script>
+	<meta name="keywords" content="discotheque.me, music player, {{video.title}}, music"/>
+	<meta property="og:title" content="discotheque.me - {{video.title}}"/>
+	<meta property="og:type" content="article"/>
+	<meta property="og:image" content="{{video.thumbnail120}}"/>
+	<meta property="og:site_name" content="discotheque.me"/>
+	    
+</head>
+<body>
+
+<center><h1>{{video.title}}</h1><br>
+	{% if not user.is_authenticated %}
+	<h2>Start our music player by signing up with your Facebook account!<br/><a href="https://graph.facebook.com/oauth/authorize?client_id=120761471302389&redirect_uri=http://www.discotheque.me/login/&scope=publish_stream,email&display=popup">
+      <img src="http://developers.facebook.com/images/devsite/login-button.png"</img>
+    </a></h2>
+	{%else%}
+	<h2>Welcome back, <a href="/home/">go to your home</a> to start listening to your music!</h2>
+	{%endif%}
+	
+	
+	
+	<!-- embed the player --> 
+    <div id="ytapiplayer" onclick="pausevideo();return false;"> 
+      You need Flash player 8+ and JavaScript enabled to view this video.
+    </div> 
+    <script type="text/javascript"> 
+      // <![CDATA[
+
+      // allowScriptAccess must be set to allow the Javascript from one 
+      // domain to access the swf on the youtube domain
+      var params = { allowScriptAccess: "always", bgcolor: "#cccccc" };
+      // this sets the id of the object or embed tag to 'myytplayer'.
+      // You then use this id to access the swf and make calls to the player's API
+      var atts = { id: "myytplayer" };
+      swfobject.embedSWF("http://www.youtube.com/apiplayer?enablejsapi=1&playerapiid=ytplayer", 
+                         "ytapiplayer", "400", "300", "8", null, null, params, atts);
+      //]]>
+    </script>
+	<script>
+	function onYouTubePlayerReady(playerId) {
+		ytplayer = document.getElementById("myytplayer");
+		if (ytplayer) {
+		    //ytplayer.addEventListener("onStateChange", "onytplayerStateChange");
+			// functions for the api calls
+			ytplayer = document.getElementById("myytplayer");        
+			if (ytplayer) {
+				ytplayer.loadVideoById('{{video.identifier}}', 0);
+			}
+			 
+		  }	
+	 }
+	function getPlayerState() {
+		ytplayer = document.getElementById("myytplayer");
+		if (ytplayer) {
+			return ytplayer.getPlayerState();
+		}
+	}
+	function pausevideo(){
+		ytplayer = document.getElementById("myytplayer");
+		if (ytplayer) {
+			if (getPlayerState() ==1){
+				ytplayer.pauseVideo();
+				$('#pausetext').html('play');
+			}else{
+				$('#pausetext').html('pause');
+				ytplayer.playVideo();
+			}
+		}
+	}
+	</script>
+	
+	
+	
+	
+	<div id="controls"><a href="/services/go/next/{{video.id}}/">watch next</a> - <a href="#" onclick="pausevideo();return false;" id="pausetext">pause</a> </div>
+	
+	
+		
+	
+	<script> 
+
+	function InitConnected(){
+
+		}
+
+		function InitNotConnected(){
+
+		}	
+
+
+
+	FB.init("6e0962e0c4003984883d784a66697a11", "/xd_receiver.html", {"ifUserConnected": InitConnected, "ifUserNotConnected": InitNotConnected, "reloadIfSessionStateChanged": true});
+
+	</script>
+	
+	<fb:comments xid="discotheque-me-video-{{video.identifier}}"></fb:comments>
+	</center>
+	
+	{%include "footer.html"%}
+</body>
+</html>

@@ -1,0 +1,41 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:fb="http://www.facebook.com/2008/fbml">
+<head>
+	<title>discotheque.me</title>
+	<script type="text/javascript" src="http://static.ak.connect.facebook.com/js/api_lib/v0.4/FeatureLoader.js.php"></script> 
+	<script type="text/javascript" src="http://www.google.com/jsapi?key=ABQIAAAAeZHdmk7IDlnt6hw7bynNARQcG010bBBcQO8RX_6ETSTACWgmrxQTkHjxBpNFdli4IfjLEkC1YEdoZg"></script>
+	<script language="Javascript" type="text/javascript">
+	    //<![CDATA[
+
+	    google.load("jquery", "1.4.2");
+		google.load("swfobject", "2.2");
+	
+		
+	</script>
+	<script src="http://static.discotheque.me/javascript/jquery.vtip.js"></script>
+	<link rel="stylesheet" type="text/css" href="http://static.discotheque.me/css/vtip.css" />
+</head>
+<body>
+
+	<center><h2>Thank you for signing up, now you're a step away from the club</h2><br/>
+		<h3><a href="https://chrome.google.com/extensions/detail/pbijeccegcdldfkjdoiicfapbloeboho?hl=en" target="_blonk">Download here</a> the extension for Chrome that will let you track the music you listen on Youtube</h3>
+		<br/><br/><br/>
+		<h4>When you're done, <a href="/home/">let's start!</a></h4></center>
+		{%include "footer.html"%}
+<script> 
+
+function InitConnected(){
+		
+	}
+	
+	function InitNotConnected(){
+		
+	}	
+	
+
+
+FB.init("6e0962e0c4003984883d784a66697a11", "/xd_receiver.html", {"ifUserConnected": InitConnected, "ifUserNotConnected": InitNotConnected, "reloadIfSessionStateChanged": true});
+
+</script>
+</body>
+</html>

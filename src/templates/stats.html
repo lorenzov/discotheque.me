@@ -1,0 +1,20 @@
+<html><head>
+<title>discotheque.me stats</title>
+<script type="text/javascript" src="http://www.google.com/jsapi?key=ABQIAAAAeZHdmk7IDlnt6hw7bynNARQcG010bBBcQO8RX_6ETSTACWgmrxQTkHjxBpNFdli4IfjLEkC1YEdoZg"></script>
+<script language="Javascript" type="text/javascript">
+    //<![CDATA[
+
+    google.load("jquery", "1.4.2");
+
+	
+</script><link rel="stylesheet" type="text/css" href="http://static.discotheque.me/css/vtip.css" /></head>
+<body>
+	<h1>Last watched videos</h1>
+	<br/>
+	{%for view in views%}
+	<a href="http://www.youtube.com/watch/{{view.video.identifier}}/" target="_blank" title="{{view.video.title}}"><img src="{{view.video.thumbnail120}}"></a></br>
+	
+	{%endfor%}
+
+</body>
+</html>

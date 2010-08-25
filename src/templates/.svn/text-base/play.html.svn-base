@@ -1,0 +1,326 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:fb="http://www.facebook.com/2008/fbml">
+<head>
+	<title>discotheque.me</title>
+	<link rel="stylesheet" href="http://static.discotheque.me/css/nivo-slider.css" type="text/css" media="screen" />
+	
+	<script type="text/javascript" src="http://static.ak.connect.facebook.com/js/api_lib/v0.4/FeatureLoader.js.php"></script> 
+	
+	<script type="text/javascript" src="http://www.google.com/jsapi?key=ABQIAAAAeZHdmk7IDlnt6hw7bynNARQcG010bBBcQO8RX_6ETSTACWgmrxQTkHjxBpNFdli4IfjLEkC1YEdoZg"></script>
+	<script language="Javascript" type="text/javascript">
+	    //<![CDATA[
+
+	    google.load("jquery", "1.4.2");
+		google.load("swfobject", "2.2");
+	
+		
+	</script>
+	<script src="http://static.discotheque.me/javascript/jquery.flash.js"></script>
+	<script src="http://static.discotheque.me/javascript/jquery.vtip.js"></script>
+	
+	<script type="text/javascript" src="http://static.discotheque.me/javascript/jquery.jcarousel.js"></script>
+	
+	<link rel="stylesheet" type="text/css" href="http://static.discotheque.me/css/jcarousel.css" />
+	
+	<script>
+		var started = false;
+		var currentIndex = 0;
+		var sendIndex = 0;
+		var lastInterval = 0;
+		var videos = [{%for video in mostplayedvideos%}'{{video.identifier}}'{%if not forloop.last%},{%endif%}{%endfor%}];
+		var titles = [{%for video in mostplayedvideos%}'{{video.title}}'{%if not forloop.last%},{%endif%}{%endfor%}];
+		function indexPosition(originalArray, itemP) {
+					var j = 0;
+					while (j < originalArray.length) {
+					//	alert(originalArray[j]);
+						if (originalArray[j] == itemP) {
+							return j;
+					} else { j++; }
+				}
+					//	assert('hi');
+				return j;
+		}
+		
+		function load_lastplayed(){
+			
+		}
+		
+		function like(){
+			video = videos[currentIndex];
+			$.ajax({
+			  url: '/services/video/like/?url=' + videos[currentIndex]
+			});
+		}
+	  function play_video(video_id, index) {
+		//no video currently playing
+		started = false;
+		if (index == -1){
+			index = 0;
+			video_id = videos[0];
+		}
+		currentIndex = index;  
+
+	  
+	    
+	    
+	    
+		// functions for the api calls
+		ytplayer = document.getElementById("myytplayer");        
+		if (ytplayer) {
+			ytplayer.loadVideoById(video_id, 0);
+		}
+		//updates the title
+		$('#titlearea').html(titles[indexPosition(videos, video_id)]);
+		//updates the share link
+		$('#sharelink').attr('href', 'http://www.facebook.com/sharer.php?u=http://www.youtube.com/watch%3Fv%3' + video_id + '&t=' + titles[currentIndex]);        
+	   	$('#shareimg').css('display', 'block');
+	
+		//request
+		
+	  }
+	
+	function playnext(){
+		nextIndex = currentIndex + 1;
+		if (nextIndex == videos.length){
+			nextIndex = 0;
+		}
+		play_video(videos[nextIndex], nextIndex);
+	}
+	function playprevious(){
+		nextIndex = currentIndex - 1;
+		if (nextIndex == -1){
+			nextIndex = videos.length - 1;
+		}
+		play_video(videos[nextIndex], nextIndex);
+	}
+	
+	function onytplayerStateChange(newState){
+		if (newState == 2){
+			//pause
+			return;
+		}
+		sendIndex = currentIndex;
+		started = false;
+		if (lastInterval > 0){
+			clearTimeout(lastInterval);
+		}
+		if (newState == 1){
+			started = true;
+			
+			lastInterval = setTimeout(function(){
+				if (started && getPlayerState() == 1)
+				$.ajax({
+				  url: '/services/video/view/?url=' + videos[currentIndex]
+				});
+				
+			}, 15000);
+			
+		}
+		
+		if (newState == 0){
+			//play next video
+			nextIndex = currentIndex + 1;
+			if (nextIndex == videos.length){
+				nextIndex = 0;
+			}
+			play_video(videos[nextIndex], nextIndex);
+		}
+	}
+	function getPlayerState() {
+		ytplayer = document.getElementById("myytplayer");
+		if (ytplayer) {
+			return ytplayer.getPlayerState();
+		}
+	}
+	function pausevideo(){
+		ytplayer = document.getElementById("myytplayer");
+		if (ytplayer) {
+			if (getPlayerState() ==1){
+				ytplayer.pauseVideo();
+			}else{
+				ytplayer.playVideo();
+			}
+		}
+	}
+	function onYouTubePlayerReady(playerId) {
+		ytplayer = document.getElementById("myytplayer");
+		if (ytplayer) {
+		    ytplayer.addEventListener("onStateChange", "onytplayerStateChange");
+			
+			ytplayer.loadVideoById(videos[0], 1);
+			$('#titlearea').html(titles[0]);
+			//updates the share link
+			$('#sharelink').attr('href', 'http://www.facebook.com/sharer.php?u=www.youtube.com/watch%3Fv%3' + videos[0] + '&t=' + titles[0]);        
+		   	$('#shareimg').css('display', 'block');
+			
+			
+			 
+		  }	
+	   }
+	
+	
+	 
+	</script>
+	
+	<script type="text/javascript">
+	    $(function(){
+	        $('.video-wrap').hover(function(){
+	            $(this).children('.comment').stop().animate({"top": "10px"}, 400);}
+
+	            , function(){
+	            $(this).children('.comment').stop().animate({"top": '-400px'}, 600);});
+	    });
+	</script>
+	
+	<style type="text/css">	
+	        .video-wrap
+	        {
+	            width:240px;
+	            height:180px;
+	            position:relative;
+	            margin:auto;
+	            overflow:hidden;
+	         }
+
+	        .comment
+	        {
+	            position:absolute;   
+	            width:230px;
+	            top:-100px;
+	            left:10px;
+	            letter-spacing: -1px;
+	            color: white; 
+				font: 15px Verdana;
+				font-weight: bold; 
+	            background: #4A4D4A; 
+	            padding-top: 5px;   
+		        filter:alpha(opacity=80);
+		        -moz-opacity:0.8;
+		        -khtml-opacity: 0.8;
+		        opacity: 0.8;
+	            line-height: 90%    
+	        }
+	 </style>
+</head>
+<body>
+
+<center><h2>Welcome to my discotheque.me!</h2><br/><h4>Listen to my playlist, scroll and click to change song. You can start creating <a href="http://www.discotheque.me">your own discotheque.me</a>!</h4>
+	<table>
+	<tr>
+	<td>
+	<button class="prev" style="float:left;"><<</button>
+	</td>
+	<td>
+	<div class="carousel">
+	<script type="text/javascript">
+		function removeItemFromArray(originalArray, itemToRemove) {
+			var j = 0;
+			while (j < originalArray.length) {
+			//	alert(originalArray[j]);
+				if (originalArray[j] == itemToRemove) {
+					originalArray.splice(j, 1);
+					break;
+			} else { j++; }
+		}
+			//	assert('hi');
+		return j;
+		}
+
+		function removeItem(videoIdentifier){
+		    $.ajax({url: '/services/video/exclude/?url=' + videoIdentifier});
+		    
+		    j = removeItemFromArray(videos, videoIdentifier);
+			//questo non funziona
+		    titles.splice(j,1);
+			//is itemIdex now playing?
+			if (j == currentIndex){
+				currentIndex -=1 ; // questo server per non saltare una canzona (gli indici shiftano verso sinistra di 1)
+				playnext();
+			}
+		}
+	</script>
+	
+	{%for video in mostplayedvideosth%}
+	{%if forloop.first%}
+		<ul id="videogallery">
+	{%endif%}
+	<li id="livideo-{{forloop.counter0}}"><div class="video-wrap"><span class="comment">{{video.title}} </span><a href="#" onclick="play_video('{{video.identifier}}', {{forloop.counter0}});return false;" id="linkvideo" title="{{video.title}}"><img src="{{video.thumbnail320}}" border="0" width="240" height="180"/></a>
+	</div></li>
+	
+	{%if forloop.last%}
+		</ul>
+	{%endif%}
+	
+	
+	{% empty %}
+	Our Chrome extension could help you listening to music online, <a href="https://chrome.google.com/extensions/detail/pbijeccegcdldfkjdoiicfapbloeboho?hl=en">give it a try</a>!<br/>
+	<h4><b>After you've watched videos on Youtube you will see your playlists here, go to <a href="http://www.youtube.com">youtube.com</a> and start listening to music.</b></h4>
+	
+	
+	{%endfor%}
+	<script type="text/javascript">
+		$(function() {
+		    $(".carousel").jCarouselLite({
+		        btnNext: ".next",
+		        btnPrev: ".prev",
+				circular: false
+		    });
+		});
+	</script>
+</div>
+</td>
+<td>
+<button class="next" style="float:right;">>></button>&nbsp;<!--<a href="#" onclick="load_lastplayed():return false;">Switch to last played videos</a>-->
+</td>
+</tr>
+</table>
+	<br clear="both"/>
+		<div id="top_row_center" class="video_center video">
+			
+			
+			<div> 
+			      
+			    <!-- embed the player --> 
+			    <div id="ytapiplayer" onclick="pausevideo();return false;"> 
+			      You need Flash player 8+ and JavaScript enabled to view this video.
+			    </div> 
+			    <script type="text/javascript"> 
+			      // <![CDATA[
+
+			      // allowScriptAccess must be set to allow the Javascript from one 
+			      // domain to access the swf on the youtube domain
+			      var params = { allowScriptAccess: "always", bgcolor: "#cccccc" };
+			      // this sets the id of the object or embed tag to 'myytplayer'.
+			      // You then use this id to access the swf and make calls to the player's API
+			      var atts = { id: "myytplayer" };
+			      swfobject.embedSWF("http://www.youtube.com/apiplayer?enablejsapi=1&playerapiid=ytplayer", 
+			                         "ytapiplayer", "400", "300", "8", null, null, params, atts);
+			      //]]>
+			    </script><br/>
+				<div id="titlearea"></div><div id="sharearea"><a id="sharelink"href="" target="_blank"><img id="shareimg" style="display:none;" src="http://wiki.developers.facebook.com/images/b/b1/Share_button.png" border="0"></a>&nbsp;<a id="likelink" href="#" onclick="like();return false;" title="Like this song!"><img src="http://static.discotheque.me/icons/thumb_up.png" border="0"/></a></div><br/>
+				<div id="controls"><a href="#" onclick="playprevious();return false;"><img src="http://static.discotheque.me/icons/control_rewind_blue.png" border="0"></a> - <a href="#" onclick="pausevideo();return false;" id="pausetext"><img src="http://static.discotheque.me/icons/control_play_blue.png" border="0"></a> - <a href="#" onclick="playnext();return false;"><img src="http://static.discotheque.me/icons/control_fastforward_blue.png" border="0"></a> </div>
+			
+			
+		  
+		</div>
+		
+	</center>		
+		
+	
+	<script> 
+
+	function InitConnected(){
+
+		}
+
+		function InitNotConnected(){
+
+		}	
+
+
+
+	FB.init("6e0962e0c4003984883d784a66697a11", "/xd_receiver.html", {"ifUserConnected": InitConnected, "ifUserNotConnected": InitNotConnected, "reloadIfSessionStateChanged": true});
+
+	</script>{%include "footer.html"%}
+</body>
+</html>

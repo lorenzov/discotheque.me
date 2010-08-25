@@ -1,0 +1,178 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:fb="http://www.facebook.com/2008/fbml">
+<head>
+	<title>discotheque.me</title>
+	<script type="text/javascript" src="http://static.ak.connect.facebook.com/js/api_lib/v0.4/FeatureLoader.js.php"></script> 
+	<script type="text/javascript" src="http://www.google.com/jsapi?key=ABQIAAAAeZHdmk7IDlnt6hw7bynNARQcG010bBBcQO8RX_6ETSTACWgmrxQTkHjxBpNFdli4IfjLEkC1YEdoZg"></script>
+	<script language="Javascript" type="text/javascript">
+	    //<![CDATA[
+
+	    google.load("jquery", "1.4.2");
+		google.load("swfobject", "2.2");
+	
+		
+	</script>
+	<script src="http://static.discotheque.me/javascript/jquery.vtip.js"></script>
+	<script type="text/javascript" src="http://static.discotheque.me/javascript/jquery.jcarousel.js"></script>
+	
+	<link rel="stylesheet" type="text/css" href="http://static.discotheque.me/css/jcarousel.css" />
+	<link rel="stylesheet" type="text/css" href="http://static.discotheque.me/css/vtip.css" />
+	<style type="text/css">	
+	        .video-wrap
+	        {
+	            width:240px;
+	            height:180px;
+	            position:relative;
+	            margin:auto;
+	            overflow:hidden;
+	         }
+
+	        .comment
+	        {
+	            position:absolute;   
+	            width:230px;
+	            top:-100px;
+	            left:10px;
+	            letter-spacing: -1px;
+	            color: white; 
+				font: 15px Verdana;
+				font-weight: bold; 
+	            background: #4A4D4A; 
+	            padding-top: 5px;   
+		        filter:alpha(opacity=80);
+		        -moz-opacity:0.8;
+		        -khtml-opacity: 0.8;
+		        opacity: 0.8;
+	            line-height: 90%    
+	        }
+	 </style>
+<body>
+<script>
+function play_video(video_id, index) {
+	//no video currently playing
+	started = false;
+	if (index == -1){
+		index = 0;
+		video_id = videos[0];
+	}
+	currentIndex = index;  
+
+  
+    
+    
+    
+	// functions for the api calls
+	ytplayer = document.getElementById("myytplayer");        
+	if (ytplayer) {
+		ytplayer.loadVideoById(video_id, 0);
+	}
+	//updates the title
+	//$('#titlearea').html(titles[currentIndex]);
+	//updates the share link
+	//$('#sharelink').attr('href', 'http://www.facebook.com/sharer.php?u=http://www.youtube.com/watch%3Fv%3' + video_id + '&t=' + titles[currentIndex]);        
+   	$('#ytplayer').css('display', 'block');
+
+	//request
+	
+  }
+</script>
+	{% if error %}
+	      {% if error == 'AUTH_FAILED' %}
+	          <p>Authentication failed</p>
+	      {% else %}{% if error == 'AUTH_DISABLED' %}
+	          <p>Your account is disabled</p>
+	      {% else %}{% if error == 'AUTH_DENIED' %}
+	          <p>You did not allow access</p>
+	       {% endif %}{% endif %}{% endif %}
+	  {% else %}
+	{% if not user.is_authenticated %}
+	<center><h2>Wanna listen to the music you love? Enter this club!</h2><br/>
+		<h4>Sign up with your Facebook profile<br/>
+	    <a href="https://graph.facebook.com/oauth/authorize?client_id=120761471302389&redirect_uri=http://www.discotheque.me/login/&scope=publish_stream,email&display=popup">
+	      <img src="http://developers.facebook.com/images/devsite/login-button.png" border="0"/>
+	    </a></h4></center>
+	{%endif%}
+	  {% endif %}
+	
+	
+	
+	<center>
+		Most watched videos today:<br/>
+		<button class="prev"><<</button>
+		<button class="next">>></button><br/>
+		<div class="carousel" >
+		{%for video in lastvideos%}
+		{%if forloop.first%}
+			<ul>
+		{%endif%}
+		<li id="livideo-{{forloop.counter0}}"><div class="video-wrap"><span class="comment">{{video.title}} </span><a href="/v/{{video.id}}/{{video.title|slugify}}/"  id="linkvideo" title="{{video.title}}"><img src="{{video.thumbnail320}}" border="0" width="240" height="180" onerror="this.src='http://static.discotheque.me/images/nothumg.png';"/></a>
+		</div></li>
+		
+		
+		
+		
+		
+		
+		
+		{%if forloop.last%}
+			</ul>
+		{%endif%}
+		{%endfor%}
+		<script type="text/javascript">
+			$(function() {
+			    $(".carousel").jCarouselLite({
+			        btnNext: ".next",
+			        btnPrev: ".prev"
+			    });
+			});
+		</script>
+		<script type="text/javascript">
+		    $(function(){
+		        $('.video-wrap').hover(function(){
+		            $(this).children('.comment').stop().animate({"top": "10px"}, 400);}
+
+		            , function(){
+		            $(this).children('.comment').stop().animate({"top": '-400px'}, 600);});
+		    });
+		</script>
+		</div>
+		<br/>
+		
+		<div id="ytapiplayer" > 
+	      
+	    </div> 
+	    <script type="text/javascript"> 
+	      // <![CDATA[
+
+	      // allowScriptAccess must be set to allow the Javascript from one 
+	      // domain to access the swf on the youtube domain
+	      var params = { allowScriptAccess: "always", bgcolor: "#cccccc" };
+	      // this sets the id of the object or embed tag to 'myytplayer'.
+	      // You then use this id to access the swf and make calls to the player's API
+	      var atts = { id: "myytplayer" };
+	      //swfobject.embedSWF("http://www.youtube.com/apiplayer?enablejsapi=1&playerapiid=ytplayer", 
+	                         "ytapiplayer", "400", "300", "8", null, null, params, atts);
+	      //]]>
+	    </script></div>
+		
+		</center>
+		<br><center>
+		<h4>discotheque.me tracks the music you love listening on Youtube and automatically creates playlists with the songs you prefer.</h4></center>
+		{%include "footer.html"%}
+<script> 
+
+function InitConnected(){
+		
+	}
+	
+	function InitNotConnected(){
+		
+	}	
+	
+
+
+FB.init("6e0962e0c4003984883d784a66697a11", "/xd_receiver.html", {"ifUserConnected": InitConnected, "ifUserNotConnected": InitNotConnected, "reloadIfSessionStateChanged": false});
+
+</script>
+</body>
+</html>
