@@ -50,7 +50,7 @@ def new(request):
 def stats(request):
 	videos = Video.objects.count()
 	users = User.objects.count()
-	lastviews = View.objects.filter(date__gte = (datetime.datetime.now() - datetime.timedelta(1)))
+	lastviews = View.objects.filter(date__gte = (datetime.datetime.now() - datetime.timedelta(1))).count()
 	views = View.objects.all().order_by('-id')[:10]
 	template_context = {'views': views, 'users': users, 'videos': videos, 'lastviews': lastviews}
 	return render_to_response('stats.html', template_context,context_instance=RequestContext(request) )	
