@@ -48,7 +48,7 @@ def new(request):
 
 
 def stats(request):
-	videos = Videos.objects.count()
+	videos = Video.objects.count()
 	users = User.objects.count
 	views = View.objects.all().order_by('-id')[:10]
 	template_context = {'views': views, 'users': users, 'videos': videos}
