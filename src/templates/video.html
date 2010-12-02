@@ -13,8 +13,9 @@
 		
 	</script>
 	<script src="http://static.discotheque.me/javascript/jquery.flash.js"></script>
+	<script src="http://static.discotheque.me/javascript/jquery.debug.js"></script>
 	<script>
-	  
+	  var debug = new $.debug();
 	</script>
 	<meta name="keywords" content="discotheque.me, music player, {{video.title}}, music"/>
 	<meta property="og:title" content="discotheque.me - {{video.title}}"/>
@@ -57,6 +58,7 @@
 	
 	var ready = false;
 	function onYouTubePlayerReady(playerId) {
+		debug.dump('ready');
 		ytplayer = document.getElementById("myytplayer");
 		if (ytplayer) {
 		    //ytplayer.addEventListener("onStateChange", "onytplayerStateChange");
@@ -73,6 +75,7 @@
 		  }	
 	 }
 	function getPlayerState() {
+		debug.dump('state');
 		ytplayer = document.getElementById("myytplayer");
 		if (ytplayer) {
 			return ytplayer.getPlayerState();
