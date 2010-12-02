@@ -54,6 +54,8 @@
       //]]>
     </script>
 	<script>
+	
+	var ready = false;
 	function onYouTubePlayerReady(playerId) {
 		ytplayer = document.getElementById("myytplayer");
 		if (ytplayer) {
@@ -61,7 +63,10 @@
 			// functions for the api calls
 			ytplayer = document.getElementById("myytplayer");        
 			if (ytplayer) {
-				ytplayer.loadVideoById('{{video.identifier}}', 0);
+				if (!ready){
+					ytplayer.loadVideoById('{{video.identifier}}', 0);
+					ready = true;
+				}
 			}
 			 
 		  }	

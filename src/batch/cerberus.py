@@ -29,6 +29,7 @@ def cerberus():
 		else:
 			video.verified = True
 			video.validated = False
+		
 			
 		#thumbnails
 		th120 = False
