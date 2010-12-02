@@ -96,7 +96,7 @@ INSTALLED_APPS = (
      'django.contrib.admin',
 	'music.discotheque',
 )
-
+ 
 AUTHENTICATION_BACKENDS = (
     'music.backends.FacebookBackend',
 )

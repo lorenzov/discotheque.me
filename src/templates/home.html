@@ -156,7 +156,7 @@
 			ytplayer.loadVideoById(videos[0], 1);
 			$('#titlearea').html(titles[0]);
 			//updates the share link
-			$('#sharelink').attr('href', 'http://www.facebook.com/sharer.php?u=www.youtube.com/watch%3Fv%3' + videos[0] + '&t=' + titles[0]);        
+			$('#sharelink').attr('href', 'http://www.facebook.com/sharer.php?u=www.youtube.com/watch%3Fv%3' + videos[0] + '&t=' + escape(titles[0]));        
 		   	$('#shareimg').css('display', 'block');
 			
 			

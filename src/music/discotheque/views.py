@@ -93,7 +93,7 @@ def play(request, id):
 	return HttpResponse(t.render(c))
 
 def robots(request):
-	output = 'User-agent: *\nDisallow: /services\nDisallow: /data'
+	output = 'User-agent: *\nDisallow: /services/\nDisallow: /data/'
 	return HttpResponse(output, mimetype = 'text/plain')
 				
 def home(request):
@@ -337,7 +337,7 @@ def go_next(request, id):
 		next_videos = Video.objects.all().order_by('-id')[:100]
 		random.seed()
 		next_video = next_videos[random.sample(range(100), 1)[0]]
-	return HttpResponsePermanentRedirect('/v/' + str(next_video.id) + '/' + slugify(video.title) + '/')	
+	return HttpResponsePermanentRedirect('/v/' + str(next_video.id) + '/' + slugify(next_video.title) + '/')	
 	
 
 def xd_receiver(request):
