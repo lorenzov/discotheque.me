@@ -1,4 +1,4 @@
-export PYTHONPATH=/var/discotheque/:/var/discotheque/src/:/var/django/
+export PYTHONPATH=/home/ubuntu/discotheque.me/:/home/ubuntu/discotheque.me/src/:/var/django/
 export DJANGO_SETTINGS_MODULE=music.settings
-cd /var/discotheque/src/batch
+cd /home/ubuntu/discotheque.me/src/batch
 python pythagoras.py
