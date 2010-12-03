@@ -24,7 +24,21 @@
 	    
 </head>
 <body>
+	<script> 
 
+	function InitConnected(){
+
+		}
+
+		function InitNotConnected(){
+
+		}	
+
+
+
+	FB.init("6e0962e0c4003984883d784a66697a11", "/xd_receiver.html", {"ifUserConnected": InitConnected, "ifUserNotConnected": InitNotConnected});
+
+	</script>
 <center><h1>{{video.title}}</h1><br>
 	{% if not user.is_authenticated %}
 	<h2>Start our music player by signing up with your Facebook account!<br/><a href="https://graph.facebook.com/oauth/authorize?client_id=120761471302389&redirect_uri=http://www.discotheque.me/login/&scope=publish_stream,email&display=popup">
@@ -101,21 +115,7 @@
 	
 		
 	
-	<script> 
-
-	function InitConnected(){
-
-		}
-
-		function InitNotConnected(){
-
-		}	
-
-
-
-	FB.init("6e0962e0c4003984883d784a66697a11", "/xd_receiver.html", {"ifUserConnected": InitConnected, "ifUserNotConnected": InitNotConnected});
-
-	</script>
+	
 	
 	<fb:comments xid="discotheque-me-video-{{video.identifier}}"></fb:comments>
 	</center>
