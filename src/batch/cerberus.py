@@ -12,9 +12,12 @@ def cerberus():
 		try:
 			entry = yt_service.GetYouTubeVideoEntry(video_id= video.identifier) #grabs information about the video
 		except:
+			
 			video.verified = True
 			video.save()
 			continue
+		video.verified = True
+		video.save()	
 		categories = entry.category
 		music = False
 		for category in categories:
