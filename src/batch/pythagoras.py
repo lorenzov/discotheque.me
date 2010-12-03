@@ -35,6 +35,8 @@ def calculate(user, stats = 0, days = 90):
 		
 		mpv = MostPlayedVideo(user = user)
 		mpv.video = Video.objects.get(identifier__exact = s_video[0])
+		if not mpv.video.validated == True:
+			continue
 		mpv.count = s_video[1]
 		mpv.stats = stats
 		mpv.save()
