@@ -38,9 +38,7 @@
 	
 	
 	<!-- embed the player --> 
-    <div id="ytapiplayer" onclick=""> 
-      You need Flash player 8+ and JavaScript enabled to view this video.
-    </div> 
+    
     <script type="text/javascript"> 
       // <![CDATA[
 
@@ -50,7 +48,8 @@
       // this sets the id of the object or embed tag to 'myytplayer'.
       // You then use this id to access the swf and make calls to the player's API
       var atts = { id: "myytplayer" };
-      swfobject.embedSWF("http://www.youtube.com/apiplayer?enablejsapi=1&playerapiid=ytplayer", 
+    debug.dump('embed');  
+	swfobject.embedSWF("http://www.youtube.com/apiplayer?enablejsapi=1&playerapiid=ytplayer", 
                          "ytapiplayer", "400", "300", "8", null, null, params, atts);
       
 	
