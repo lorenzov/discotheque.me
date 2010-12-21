@@ -15,7 +15,7 @@ DATABASES = {
         'NAME': 'discotheque',                      # Or path to database file if using sqlite3.
         'USER': 'discotheque',                      # Not used with sqlite3.
         'PASSWORD': 'discotheque',                  # Not used with sqlite3.
-        'HOST': '10.211.10.116',                      # Set to empty string for localhost. Not used with sqlite3.
+        'HOST': 'localhost',                      # Set to empty string for localhost. Not used with sqlite3.
         'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
     }
 }
@@ -83,7 +83,7 @@ TEMPLATE_DIRS = (
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
 	
-	'/home/ubuntu/discotheque.me/src/templates/'
+	'/home/lviscanti/discotheque.me/src/templates/'
 )
 
 INSTALLED_APPS = (
