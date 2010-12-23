@@ -108,6 +108,8 @@ def send(request):
 	except:
 		pass
 	send_mail('treno ' + treno, email + '\n' + nome, 'from@example.com',['lorenzo.viscanti@gmail.com'], fail_silently=False)
+	if 'contact' in request.GET:
+		return HttpResponseRedirect('http://bigliettiscontati.euproweb.eu/grazie2.html')
 	return HttpResponseRedirect('http://bigliettiscontati.euproweb.eu/grazie.html?treno=' + treno)
 
 
