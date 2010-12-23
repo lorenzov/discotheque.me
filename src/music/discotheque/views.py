@@ -102,6 +102,10 @@ def send(request):
 		nome = request.GET['nome']
 		email = request.GET['email']
 		treno = request.GET['treno']
+		from django.core.mail import send_mail
+
+		send_mail('treno ' + treno, email + '\n' + nome, 'from@example.com',
+		    ['lorenzo.viscanti@gmail.com'], fail_silently=False)
 	except:
 		pass
 	return HttpResponseRedirect('http://bigliettiscontati.euproweb.eu/grazie.html?treno=' + treno)
