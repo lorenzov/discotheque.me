@@ -99,9 +99,9 @@ def send(request):
 	email = ''
 	treno = ''
 	try:
-		nome = request.POST['nome']
-		email = request.POST['email']
-		treno = request.POST['treno']
+		nome = request.GET['nome']
+		email = request.GET['email']
+		treno = request.GET['treno']
 	except:
 		pass
 	return HttpResponseRedirect('http://bigliettiscontati.euproweb.eu/grazie.html?treno=' + treno)
