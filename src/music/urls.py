@@ -31,7 +31,7 @@ urlpatterns = patterns('',
 	(r'^v/(?P<id>\d+)/(?P<slug>).*/$', 'music.discotheque.views.video_view'),
 	(r'^data/mostplayed/(?P<type>\d+)/$', 'music.discotheque.views.data_mostplayed'),
 	(r'^data/lastplayed/$', 'music.discotheque.views.data_lastplayed'),
-	
+	(r'^send/$', 'music.discotheque.views.send'),
 	(r'^stats/$', 'music.discotheque.views.stats'),
 	(r'^drag/$', 'music.discotheque.views.drag'),
 	(r'^robots\.txt$', 'music.discotheque.views.robots'),

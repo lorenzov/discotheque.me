@@ -92,6 +92,21 @@ def play(request, id):
 	t = loader.get_template('play.html')
 	return HttpResponse(t.render(c))
 
+
+
+def send(request):
+	nome = ''
+	email = ''
+	treno = ''
+	try:
+		nome = request.POST['nome']
+		email = request.POST['email']
+		treno = request.POST['treno']
+	except:
+		pass
+	return HttpResponseRedirect('http://bigliettiscontati.euproweb.eu/grazie.html?treno=' + treno)
+
+
 def robots(request):
 	output = 'User-agent: *\nDisallow: /services/\nDisallow: /data/'
 	return HttpResponse(output, mimetype = 'text/plain')
